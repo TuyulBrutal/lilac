@@ -20,9 +20,9 @@ from typing_extensions import override
 from ..schema import Item, chunk_embedding
 from ..signal import TextEmbeddingSignal
 
-# See readme in https://huggingface.co/jinaai/jina-embeddings-v2-small-en
+# See readme in https://huggingface.co/jinaai/jina-embeddings-v3
 _SIZE_TO_MODEL: dict[str, str] = {
-  'small': 'jina-embeddings-v2-small-en',
+  'small': 'jina-embeddings-v3',
   'base': 'jina-embeddings-v2-base-en',
 }
 
@@ -48,15 +48,15 @@ def _get_and_cache_model(model_name: str) -> 'AutoModel':
   )
 
 
-class JinaV2Small(TextEmbeddingSignal):
+class JinaV3(TextEmbeddingSignal):
   """Jina V2 Embeddings with 8K context.
 
   Each document is truncated to 8K characters, and the embeddings are computed on the truncated
   document.
   """
 
-  name: ClassVar[str] = 'jina-v2-small'
-  display_name: ClassVar[str] = 'Jina V2 (small)'
+  name: ClassVar[str] = 'jina-embeddings-v3'
+  display_name: ClassVar[str] = 'Jina V3'
   local_batch_size: ClassVar[int] = JINA_BATCH_SIZE
   local_parallelism: ClassVar[int] = 1
   local_strategy: ClassVar[TaskExecutionType] = 'threads'
@@ -127,7 +127,7 @@ class JinaV2Small(TextEmbeddingSignal):
         index += 1
 
 
-class JinaV2Base(JinaV2Small):
+class JinaV2Base(JinaV3):
   """Jina V2 Embeddings with 8K context.
 
   Each document is truncated to 8K characters, and the embeddings are computed on the truncated
