@@ -23,7 +23,7 @@ EMBEDDING_SORT_PRIORITIES = [
   'gte-small',
   'gte-base',
   'gte-large',
-  'jina-v2-small',
+  'jina-embeddings-v3',
   'jina-v2-base',
   'openai',
   'sbert',
